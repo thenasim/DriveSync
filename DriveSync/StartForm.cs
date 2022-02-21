@@ -9,13 +9,9 @@ namespace DriveSync
             InitializeComponent();
         }
 
-        private void BrowseFolder_Click(object sender, EventArgs e)
+        private void SettingsButton_Click(object sender, EventArgs e)
         {
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                MessageBox.Show(folderBrowserDialog.SelectedPath);
-                MessageBox.Show(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
-            }
+            new Settings().Show();
         }
     }
 }
