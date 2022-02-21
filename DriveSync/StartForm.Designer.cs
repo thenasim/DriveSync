@@ -50,6 +50,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1097, 620);
             this.Controls.Add(this.SettingsButton);
+            this.MaximizeBox = false;
             this.Name = "StartForm";
             this.Text = "Home - DriveSync";
             this.ResumeLayout(false);

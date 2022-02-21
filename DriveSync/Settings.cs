@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DriveSync.Models;
+using DriveSync.Utils;
 
 namespace DriveSync
 {
@@ -36,8 +38,24 @@ namespace DriveSync
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 SelectFolderTxt.Text = folderBrowserDialog.SelectedPath;
-                //MessageBox.Show(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
             }
+        }
+
+        private void SelectRCloneButton_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                RCloneConfigTxt.Text = folderBrowserDialog.SelectedPath;
+            }
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            SaveConfig.Save(new AppConfig
+            {
+                FolderToSync = SelectFolderTxt.Text,
+                RCloneConfig = RCloneConfigTxt.Text
+            });
         }
     }
 }
