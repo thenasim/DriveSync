@@ -8,21 +8,15 @@ using DriveSync.Models;
 
 namespace DriveSync.Utils
 {
-    internal static class SaveConfig
+    internal static class ConfigUtil
     {
-        private const string FolderName = "DriveSync";
-        private const string ConfigFileName = "config.json";
-
         internal static void Save(AppConfig appConfig)
         {
             try
             {
-                var localPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-                var path = Path.Combine(localPath, FolderName, ConfigFileName);
+                File.WriteAllText(Config.ConfigFilePath, JsonSerializer.Serialize(appConfig));
 
-                File.WriteAllText(path, JsonSerializer.Serialize(appConfig));
-
-                if (File.Exists(path))
+                if (File.Exists(Config.ConfigFilePath))
                 {
                     MessageBox.Show("Successfully saved config file", "Success");
                     return;
@@ -35,6 +29,21 @@ namespace DriveSync.Utils
             {
                 MessageBox.Show(ex.Message, "Unexpected error occurred", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+            }
+        }
+
+        internal static AppConfig? Load()
+        {
+            try
+            {
+                var content = File.ReadAllText(Config.ConfigFilePath);
+                return JsonSerializer.Deserialize<AppConfig>(content);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Unexpected error occurred", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return null;
             }
         }
     }

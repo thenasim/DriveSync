@@ -21,10 +21,11 @@ namespace DriveSync
 
         private void Settings_Load(object sender, EventArgs e)
         {
-            /*
-            SelectFolderTxt.AutoSize = false;
-            SelectFolderTxt.Size = new Size(500, 40);
-            */
+            var appConfig = ConfigUtil.Load();
+
+            if (appConfig == null) return;
+            SelectFolderTxt.Text = appConfig.FolderToSync;
+            RCloneConfigTxt.Text = appConfig.RCloneConfig;
         }
 
         private void Settings_FormClosed(object sender, FormClosedEventArgs e)
@@ -51,7 +52,7 @@ namespace DriveSync
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            SaveConfig.Save(new AppConfig
+            ConfigUtil.Save(new AppConfig
             {
                 FolderToSync = SelectFolderTxt.Text,
                 RCloneConfig = RCloneConfigTxt.Text
