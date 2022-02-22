@@ -15,7 +15,7 @@ namespace DriveSync
             Application.SetCompatibleTextRenderingDefault(false);
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new StartForm());
+            Application.Run(new Settings());
         }
     }
 }

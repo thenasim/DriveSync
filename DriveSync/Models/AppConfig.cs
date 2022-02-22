@@ -10,5 +10,6 @@ namespace DriveSync.Models
     {
         public string FolderToSync { get; set; } = string.Empty;
         public string RCloneConfig { get; set; } = string.Empty;
+        public int? RepeatSync { get; set; } = null; // save in the config by milliseconds
     }
 }

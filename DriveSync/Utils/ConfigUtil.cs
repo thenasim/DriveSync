@@ -18,7 +18,7 @@ namespace DriveSync.Utils
 
                 if (File.Exists(Config.ConfigFilePath))
                 {
-                    MessageBox.Show("Successfully saved config file", "Success");
+                    MessageBox.Show("Settings saved successfully.", "Success");
                     return;
                 }
 
@@ -39,10 +39,8 @@ namespace DriveSync.Utils
                 var content = File.ReadAllText(Config.ConfigFilePath);
                 return JsonSerializer.Deserialize<AppConfig>(content);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message, "Unexpected error occurred", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
                 return null;
             }
         }
