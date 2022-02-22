@@ -70,7 +70,8 @@
             this.SelectFolderTxt.Name = "SelectFolderTxt";
             this.SelectFolderTxt.ReadOnly = true;
             this.SelectFolderTxt.Size = new System.Drawing.Size(569, 43);
-            this.SelectFolderTxt.TabIndex = 2;
+            this.SelectFolderTxt.TabIndex = 0;
+            this.SelectFolderTxt.TabStop = false;
             // 
             // BrowseFolderButton
             // 
@@ -100,7 +101,8 @@
             this.RCloneConfigTxt.Name = "RCloneConfigTxt";
             this.RCloneConfigTxt.ReadOnly = true;
             this.RCloneConfigTxt.Size = new System.Drawing.Size(569, 43);
-            this.RCloneConfigTxt.TabIndex = 5;
+            this.RCloneConfigTxt.TabIndex = 1;
+            this.RCloneConfigTxt.TabStop = false;
             // 
             // label3
             // 
@@ -142,7 +144,7 @@
             this.RepeatSyncTxt.Name = "RepeatSyncTxt";
             this.RepeatSyncTxt.PlaceholderText = "Enter time in milliseconds";
             this.RepeatSyncTxt.Size = new System.Drawing.Size(569, 43);
-            this.RepeatSyncTxt.TabIndex = 9;
+            this.RepeatSyncTxt.TabIndex = 2;
             this.RepeatSyncTxt.TextChanged += new System.EventHandler(this.RepeatSyncTxt_TextChanged);
             // 
             // contextMenuStrip1

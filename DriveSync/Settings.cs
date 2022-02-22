@@ -16,19 +16,21 @@ namespace DriveSync
 {
     public partial class Settings : Form
     {
-        public Settings()
+        public Action? MyAction { get; set; }
+
+        public Settings(Action? myAction = null)
         {
             InitializeComponent();
+            MyAction = myAction;
         }
 
         private void Settings_Load(object sender, EventArgs e)
         {
-            var appConfig = ConfigUtil.Load();
+            if (Data.AppConfig == null) return;
 
-            if (appConfig == null) return;
-            SelectFolderTxt.Text = appConfig.FolderToSync;
-            RCloneConfigTxt.Text = appConfig.RCloneConfig;
-            RepeatSyncTxt.Text = appConfig.RepeatSync.ToString();
+            SelectFolderTxt.Text = Data.AppConfig.FolderToSync;
+            RCloneConfigTxt.Text = Data.AppConfig.RCloneConfig;
+            RepeatSyncTxt.Text = Data.AppConfig.RepeatSync.ToString();
         }
 
         private void Settings_FormClosed(object sender, FormClosedEventArgs e)
@@ -55,16 +57,24 @@ namespace DriveSync
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            ConfigUtil.Save(new AppConfig
+            var isSaved = ConfigUtil.Save(new AppConfig
             {
                 FolderToSync = SelectFolderTxt.Text,
                 RCloneConfig = RCloneConfigTxt.Text,
                 RepeatSync = Convert.ToInt32(RepeatSyncTxt.Text),
             });
+
+            if (!isSaved) return;
+
+            Data.AppConfig = ConfigUtil.Load();
+            
+            MyAction?.Invoke();
+            Hide();
         }
 
         private void RepeatSyncTxt_TextChanged(object sender, EventArgs e)
         {
+            // TODO: Validate later
             //ValidateRepeatSync();
         }
 

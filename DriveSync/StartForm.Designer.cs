@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StartForm));
             this.SettingsButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.SyncFolderLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // SettingsButton
@@ -44,21 +46,46 @@
             this.SettingsButton.UseVisualStyleBackColor = false;
             this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 86);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Sync Folder";
+            // 
+            // SyncFolderLabel
+            // 
+            this.SyncFolderLabel.AutoSize = true;
+            this.SyncFolderLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SyncFolderLabel.Location = new System.Drawing.Point(126, 80);
+            this.SyncFolderLabel.Name = "SyncFolderLabel";
+            this.SyncFolderLabel.Size = new System.Drawing.Size(113, 28);
+            this.SyncFolderLabel.TabIndex = 2;
+            this.SyncFolderLabel.Text = "C:/RClone/";
+            // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1097, 620);
+            this.Controls.Add(this.SyncFolderLabel);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.SettingsButton);
             this.MaximizeBox = false;
             this.Name = "StartForm";
             this.Text = "Home - DriveSync";
+            this.Load += new System.EventHandler(this.StartForm_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private Button SettingsButton;
+        private Label label1;
+        private Label SyncFolderLabel;
     }
 }

@@ -10,7 +10,7 @@ namespace DriveSync.Utils
 {
     internal static class ConfigUtil
     {
-        internal static void Save(AppConfig appConfig)
+        internal static bool Save(AppConfig appConfig)
         {
             try
             {
@@ -19,25 +19,31 @@ namespace DriveSync.Utils
                 if (File.Exists(Config.ConfigFilePath))
                 {
                     MessageBox.Show("Settings saved successfully.", "Success");
-                    return;
+                    return true;
                 }
 
                 MessageBox.Show("Can't found config file.", "Error occurred", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+                return false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Unexpected error occurred", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+                return false;
             }
         }
 
-        internal static AppConfig? Load()
+        internal static AppConfig? Load(Action? myFunc = null)
         {
             try
             {
                 var content = File.ReadAllText(Config.ConfigFilePath);
-                return JsonSerializer.Deserialize<AppConfig>(content);
+                var result = JsonSerializer.Deserialize<AppConfig>(content);
+
+                myFunc?.Invoke();
+
+                return result;
             }
             catch (Exception)
             {
