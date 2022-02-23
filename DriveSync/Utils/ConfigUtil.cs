@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using DriveSync.Models;
 
@@ -14,7 +15,12 @@ namespace DriveSync.Utils
         {
             try
             {
-                File.WriteAllText(Config.ConfigFilePath, JsonSerializer.Serialize(appConfig));
+                JsonSerializerOptions options = new()
+                {
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+                };
+
+                File.WriteAllText(Config.ConfigFilePath, JsonSerializer.Serialize(appConfig, options));
 
                 if (File.Exists(Config.ConfigFilePath))
                 {

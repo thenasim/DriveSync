@@ -16,12 +16,12 @@ namespace DriveSync
 {
     public partial class Settings : Form
     {
-        public Action? MyAction { get; set; }
+        private Action? ShowSyncFolderTextAction { get; set; }
 
-        public Settings(Action? myAction = null)
+        public Settings(Action? showSyncFolderTextAction = null)
         {
             InitializeComponent();
-            MyAction = myAction;
+            ShowSyncFolderTextAction = showSyncFolderTextAction;
         }
 
         private void Settings_Load(object sender, EventArgs e)
@@ -49,9 +49,9 @@ namespace DriveSync
 
         private void SelectRCloneButton_Click(object sender, EventArgs e)
         {
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                RCloneConfigTxt.Text = folderBrowserDialog.SelectedPath;
+                RCloneConfigTxt.Text = openFileDialog.FileName;
             }
         }
 
@@ -68,7 +68,7 @@ namespace DriveSync
 
             Data.AppConfig = ConfigUtil.Load();
             
-            MyAction?.Invoke();
+            ShowSyncFolderTextAction?.Invoke();
             Hide();
         }
 

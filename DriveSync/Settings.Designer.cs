@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.SelectFolderTxt = new System.Windows.Forms.TextBox();
@@ -40,7 +39,8 @@
             this.SaveButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.RepeatSyncTxt = new System.Windows.Forms.TextBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -107,7 +107,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 167);
+            this.label3.Location = new System.Drawing.Point(12, 170);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 20);
             this.label3.TabIndex = 4;
@@ -130,7 +130,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 237);
+            this.label4.Location = new System.Drawing.Point(12, 241);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(90, 20);
             this.label4.TabIndex = 8;
@@ -143,21 +143,29 @@
             this.RepeatSyncTxt.Multiline = true;
             this.RepeatSyncTxt.Name = "RepeatSyncTxt";
             this.RepeatSyncTxt.PlaceholderText = "Enter time in milliseconds";
-            this.RepeatSyncTxt.Size = new System.Drawing.Size(569, 43);
+            this.RepeatSyncTxt.Size = new System.Drawing.Size(537, 43);
             this.RepeatSyncTxt.TabIndex = 2;
             this.RepeatSyncTxt.TextChanged += new System.EventHandler(this.RepeatSyncTxt_TextChanged);
             // 
-            // contextMenuStrip1
+            // openFileDialog
             // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.openFileDialog.FileName = "openFileDialog1";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(662, 241);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(107, 20);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "in Milliseconds";
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.RepeatSyncTxt);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.SaveButton);
@@ -191,6 +199,7 @@
         private Button SaveButton;
         private Label label4;
         private TextBox RepeatSyncTxt;
-        private ContextMenuStrip contextMenuStrip1;
+        private OpenFileDialog openFileDialog;
+        private Label label5;
     }
 }
