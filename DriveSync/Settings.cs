@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DriveSync.Models;
 using DriveSync.Utils;
+using Mapster;
 using static System.Int32;
 
 namespace DriveSync
@@ -17,6 +18,7 @@ namespace DriveSync
     public partial class Settings : Form
     {
         private Action? ShowSyncFolderTextAction { get; set; }
+        //private HashSet<string>
 
         public Settings(Action? showSyncFolderTextAction = null)
         {
@@ -28,23 +30,14 @@ namespace DriveSync
         {
             if (Data.AppConfig == null) return;
 
-            SelectFolderTxt.Text = Data.AppConfig.FolderToSync;
-            RCloneConfigTxt.Text = Data.AppConfig.RCloneConfig;
+            //SelectFolderTxt.Text = Data.AppConfig.FolderToSync;
+            RCloneConfigTxt.Text = Data.AppConfig.RCloneExePath;
             RepeatSyncTxt.Text = Data.AppConfig.RepeatSync.ToString();
         }
 
         private void Settings_FormClosed(object sender, FormClosedEventArgs e)
         {
             Hide();
-        }
-
-        private void BrowseFolderButton_Click(object sender, EventArgs e)
-        {
-
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                SelectFolderTxt.Text = folderBrowserDialog.SelectedPath;
-            }
         }
 
         private void SelectRCloneButton_Click(object sender, EventArgs e)
@@ -57,10 +50,11 @@ namespace DriveSync
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            /*
             var isSaved = ConfigUtil.Save(new AppConfig
             {
-                FolderToSync = SelectFolderTxt.Text,
-                RCloneConfig = RCloneConfigTxt.Text,
+                //FolderToSync = SelectFolderTxt.Text,
+                RCloneExePath = RCloneConfigTxt.Text,
                 RepeatSync = Convert.ToInt32(RepeatSyncTxt.Text),
             });
 
@@ -70,6 +64,7 @@ namespace DriveSync
             
             ShowSyncFolderTextAction?.Invoke();
             Hide();
+            */
         }
 
         private void RepeatSyncTxt_TextChanged(object sender, EventArgs e)
@@ -78,7 +73,61 @@ namespace DriveSync
             //ValidateRepeatSync();
         }
 
+        private void AddMoreButton_Click(object sender, EventArgs e)
+        {
+            FlowLayoutPanel flowPanel = new()
+            {
+                Width = 1080,
+                Height = 52
+            };
+
+            var newFolderBrowserDialog = new FolderBrowserDialog();
+
+            Label label = new()
+            {
+                Text = "Sync Folder"
+            };
+
+            TextBox textBox = new()
+            {
+                Multiline = RCloneConfigTxt.Multiline,
+                Font = RCloneConfigTxt.Font,
+                Size = RCloneConfigTxt.Size,
+                ReadOnly = RCloneConfigTxt.ReadOnly,
+                Margin = RCloneConfigTxt.Margin
+            };
+
+            Button button = new()
+            {
+                Size = SelectRCloneButton.Size,
+                Text = "Select"
+            };
+
+            button.Click += (_, _) =>
+            {
+                if (newFolderBrowserDialog.ShowDialog() == DialogResult.OK)
+                {
+                    textBox.Text = newFolderBrowserDialog.SelectedPath;
+                }
+            };
+
+            ComboBox combobox = new()
+            {
+                Font = TestCmbx.Font,
+                Margin = TestCmbx.Margin,
+                Size = TestCmbx.Size
+            };
+
+            flowPanel.Controls.Add(label);
+            flowPanel.Controls.Add(textBox);
+            flowPanel.Controls.Add(button);
+            flowPanel.Controls.Add(combobox);
+
+            FlowLayoutPanel.Controls.Add(flowPanel);
+        }
+
         // Validation
+        /*
         private void ValidateRepeatSync()
         {
             if (string.IsNullOrEmpty(RepeatSyncTxt.Text))
@@ -101,5 +150,6 @@ namespace DriveSync
                 _ => RepeatSyncTxt.Text
             };
         }
+        */
     }
 }

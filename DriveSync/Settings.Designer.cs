@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.SelectFolderTxt = new System.Windows.Forms.TextBox();
-            this.BrowseFolderButton = new System.Windows.Forms.Button();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.SelectRCloneButton = new System.Windows.Forms.Button();
             this.RCloneConfigTxt = new System.Windows.Forms.TextBox();
@@ -41,6 +39,9 @@
             this.RepeatSyncTxt = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.label5 = new System.Windows.Forms.Label();
+            this.TestCmbx = new System.Windows.Forms.ComboBox();
+            this.FlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.AddMoreButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -53,39 +54,9 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Settings";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 95);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 20);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Folder to sync";
-            // 
-            // SelectFolderTxt
-            // 
-            this.SelectFolderTxt.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SelectFolderTxt.Location = new System.Drawing.Point(119, 87);
-            this.SelectFolderTxt.Multiline = true;
-            this.SelectFolderTxt.Name = "SelectFolderTxt";
-            this.SelectFolderTxt.ReadOnly = true;
-            this.SelectFolderTxt.Size = new System.Drawing.Size(569, 43);
-            this.SelectFolderTxt.TabIndex = 0;
-            this.SelectFolderTxt.TabStop = false;
-            // 
-            // BrowseFolderButton
-            // 
-            this.BrowseFolderButton.Location = new System.Drawing.Point(694, 85);
-            this.BrowseFolderButton.Name = "BrowseFolderButton";
-            this.BrowseFolderButton.Size = new System.Drawing.Size(94, 48);
-            this.BrowseFolderButton.TabIndex = 3;
-            this.BrowseFolderButton.Text = "Select";
-            this.BrowseFolderButton.UseVisualStyleBackColor = true;
-            this.BrowseFolderButton.Click += new System.EventHandler(this.BrowseFolderButton_Click);
-            // 
             // SelectRCloneButton
             // 
-            this.SelectRCloneButton.Location = new System.Drawing.Point(694, 158);
+            this.SelectRCloneButton.Location = new System.Drawing.Point(696, 62);
             this.SelectRCloneButton.Name = "SelectRCloneButton";
             this.SelectRCloneButton.Size = new System.Drawing.Size(94, 48);
             this.SelectRCloneButton.TabIndex = 6;
@@ -96,7 +67,7 @@
             // RCloneConfigTxt
             // 
             this.RCloneConfigTxt.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RCloneConfigTxt.Location = new System.Drawing.Point(119, 160);
+            this.RCloneConfigTxt.Location = new System.Drawing.Point(121, 64);
             this.RCloneConfigTxt.Multiline = true;
             this.RCloneConfigTxt.Name = "RCloneConfigTxt";
             this.RCloneConfigTxt.ReadOnly = true;
@@ -107,7 +78,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 170);
+            this.label3.Location = new System.Drawing.Point(14, 74);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 20);
             this.label3.TabIndex = 4;
@@ -119,7 +90,7 @@
             this.SaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.SaveButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.SaveButton.Location = new System.Drawing.Point(263, 356);
+            this.SaveButton.Location = new System.Drawing.Point(87, 752);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(291, 52);
             this.SaveButton.TabIndex = 7;
@@ -130,7 +101,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 241);
+            this.label4.Location = new System.Drawing.Point(20, 697);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(90, 20);
             this.label4.TabIndex = 8;
@@ -139,7 +110,7 @@
             // RepeatSyncTxt
             // 
             this.RepeatSyncTxt.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RepeatSyncTxt.Location = new System.Drawing.Point(119, 231);
+            this.RepeatSyncTxt.Location = new System.Drawing.Point(127, 687);
             this.RepeatSyncTxt.Multiline = true;
             this.RepeatSyncTxt.Name = "RepeatSyncTxt";
             this.RepeatSyncTxt.PlaceholderText = "Enter time in milliseconds";
@@ -154,17 +125,50 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(662, 241);
+            this.label5.Location = new System.Drawing.Point(670, 697);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(107, 20);
             this.label5.TabIndex = 9;
             this.label5.Text = "in Milliseconds";
             // 
+            // TestCmbx
+            // 
+            this.TestCmbx.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.TestCmbx.FormattingEnabled = true;
+            this.TestCmbx.Items.AddRange(new object[] {
+            "Hello",
+            "World"});
+            this.TestCmbx.Location = new System.Drawing.Point(747, 570);
+            this.TestCmbx.Name = "TestCmbx";
+            this.TestCmbx.Size = new System.Drawing.Size(229, 45);
+            this.TestCmbx.TabIndex = 10;
+            // 
+            // FlowLayoutPanel
+            // 
+            this.FlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.FlowLayoutPanel.Location = new System.Drawing.Point(12, 113);
+            this.FlowLayoutPanel.Name = "FlowLayoutPanel";
+            this.FlowLayoutPanel.Size = new System.Drawing.Size(1091, 328);
+            this.FlowLayoutPanel.TabIndex = 11;
+            // 
+            // AddMoreButton
+            // 
+            this.AddMoreButton.Image = ((System.Drawing.Image)(resources.GetObject("AddMoreButton.Image")));
+            this.AddMoreButton.Location = new System.Drawing.Point(1041, 62);
+            this.AddMoreButton.Name = "AddMoreButton";
+            this.AddMoreButton.Size = new System.Drawing.Size(62, 48);
+            this.AddMoreButton.TabIndex = 13;
+            this.AddMoreButton.UseVisualStyleBackColor = true;
+            this.AddMoreButton.Click += new System.EventHandler(this.AddMoreButton_Click);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1117, 949);
+            this.Controls.Add(this.AddMoreButton);
+            this.Controls.Add(this.FlowLayoutPanel);
+            this.Controls.Add(this.TestCmbx);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.RepeatSyncTxt);
             this.Controls.Add(this.label4);
@@ -172,9 +176,6 @@
             this.Controls.Add(this.SelectRCloneButton);
             this.Controls.Add(this.RCloneConfigTxt);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.BrowseFolderButton);
-            this.Controls.Add(this.SelectFolderTxt);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.Name = "Settings";
@@ -189,9 +190,6 @@
         #endregion
 
         private Label label1;
-        private Label label2;
-        private TextBox SelectFolderTxt;
-        private Button BrowseFolderButton;
         private FolderBrowserDialog folderBrowserDialog;
         private Button SelectRCloneButton;
         private TextBox RCloneConfigTxt;
@@ -201,5 +199,8 @@
         private TextBox RepeatSyncTxt;
         private OpenFileDialog openFileDialog;
         private Label label5;
+        private ComboBox TestCmbx;
+        private FlowLayoutPanel FlowLayoutPanel;
+        private Button AddMoreButton;
     }
 }
