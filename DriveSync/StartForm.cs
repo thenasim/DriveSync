@@ -31,29 +31,7 @@ namespace DriveSync
 
         private async void SyncButton_Click(object sender, EventArgs e)
         {
-            /*
-            if (Data.AppConfig == null) return;
-            var rClone = new RClone(Data.AppConfig.RCloneExePath);
-
-            SyncButton.Text = "Syncing";
-            SyncButton.Enabled = false;
-
-            var isCopied = rClone.Copy(Data.AppConfig.FolderToSyncList, "demo:", out _);
-
-            SyncButton.Text = "Sync";
-            SyncButton.Enabled = true;
-
-            var message = (isCopied ? "Successfully synced the data." : "Error occurred when syncing.");
-
-            if (WindowState == FormWindowState.Minimized)
-            {
-                NotificationUtil.Show(message);
-            }
-            else
-            {
-                MessageBox.Show(message);
-            }
-            */
+            _cancelSync = false;
 
             if (Data.AppConfig == null) return;
             if (Data.AppConfig?.FolderToSyncList == null) return;
@@ -69,6 +47,7 @@ namespace DriveSync
                 // Sync Button show syncing
                 SyncButton.Text = "Syncing";
                 SyncButton.Enabled = false;
+                CancelButton.Enabled = false;
 
                 foreach (var toSync in folderSyncList)
                 {
@@ -83,10 +62,10 @@ namespace DriveSync
                 // Sync Button text reset
                 SyncButton.Text = "Sync";
                 SyncButton.Enabled = true;
+                CancelButton.Enabled = true;
 
                 // Show message is notification
                 var message = (errorFolders.Count == 0 ? "Successfully synced all the folders." : "Error occurred while syncing.");
-                //NotificationUtil.Show(message);
                 MessageBox.Show(message);
 
                 // Show errors is message box
@@ -99,28 +78,7 @@ namespace DriveSync
             } while (await timer.WaitForNextTickAsync() && _cancelSync == false);
         }
 
-        public void RunSync()
-        {
-            MessageBox.Show("Yes");
-            return;
-
-            if (Data.AppConfig?.FolderToSyncList == null) return;
-
-            foreach (var folderToSync in Data.AppConfig.FolderToSyncList)
-            {
-                var rClone = new RClone(Data.AppConfig.RCloneExePath);
-
-                CurrentlySyncingLabel.Text = folderToSync.FolderPath;
-                CurrentRemoteLabel.Text = folderToSync.RemoteName;
-
-                var isCopied = rClone.Copy(folderToSync.FolderPath, folderToSync.RemoteName, out _);
-
-                var message = (isCopied ? "Successfully synced the data." : "Error occurred when syncing.");
-                NotificationUtil.Show(message);
-            }
-        }
-
-        private async void CancelSyncButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             _cancelSync = true;
         }

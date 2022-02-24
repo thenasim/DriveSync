@@ -44,7 +44,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.InQueueLabel = new System.Windows.Forms.Label();
-            this.CancelSyncButton = new System.Windows.Forms.Button();
+            this.CancelButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,7 +77,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.CancelSyncButton);
+            this.panel1.Controls.Add(this.CancelButton);
             this.panel1.Controls.Add(this.SyncButton);
             this.panel1.Location = new System.Drawing.Point(12, 306);
             this.panel1.Name = "panel1";
@@ -198,20 +198,20 @@
             this.InQueueLabel.TabIndex = 17;
             this.InQueueLabel.Text = "0";
             // 
-            // CancelSyncButton
+            // CancelButton
             // 
-            this.CancelSyncButton.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.CancelSyncButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CancelSyncButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CancelSyncButton.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CancelSyncButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.CancelSyncButton.Location = new System.Drawing.Point(276, 126);
-            this.CancelSyncButton.Name = "CancelSyncButton";
-            this.CancelSyncButton.Size = new System.Drawing.Size(259, 53);
-            this.CancelSyncButton.TabIndex = 5;
-            this.CancelSyncButton.Text = "Cancel Sync";
-            this.CancelSyncButton.UseVisualStyleBackColor = false;
-            this.CancelSyncButton.Click += new System.EventHandler(this.CancelSyncButton_Click);
+            this.CancelButton.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.CancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CancelButton.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CancelButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.CancelButton.Location = new System.Drawing.Point(290, 126);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(230, 52);
+            this.CancelButton.TabIndex = 5;
+            this.CancelButton.Text = "Cancel";
+            this.CancelButton.UseVisualStyleBackColor = false;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // StartForm
             // 
@@ -259,6 +259,6 @@
         private Label label6;
         private Label label5;
         private Label InQueueLabel;
-        private Button CancelSyncButton;
+        private Button CancelButton;
     }
 }
