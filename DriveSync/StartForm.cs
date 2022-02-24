@@ -11,8 +11,7 @@ namespace DriveSync
 
         internal void ShowSettingsInfo()
         {
-            //SyncFolderLabel.Text = Data.AppConfig?.FolderToSync ?? "Not specified";
-            RepeatTimeLabel.Text = Data.AppConfig?.RepeatSync.ToString() ?? "Not specified";
+            RepeatSyncLabel.Text = Data.AppConfig?.RepeatSync.ToString() ?? "Not specified";
         }
 
         private void SettingsButton_Click(object sender, EventArgs e)
@@ -35,7 +34,7 @@ namespace DriveSync
             SyncButton.Text = "Syncing";
             SyncButton.Enabled = false;
 
-            var isCopied = rClone.Copy(Data.AppConfig.FolderToSync, "demo:", out _);
+            var isCopied = rClone.Copy(Data.AppConfig.FolderToSyncList, "demo:", out _);
 
             SyncButton.Text = "Sync";
             SyncButton.Enabled = true;
@@ -51,6 +50,12 @@ namespace DriveSync
                 MessageBox.Show(message);
             }
             */
+            if (Data.AppConfig == null) return;
+
+            foreach (var folderToSync in Data.AppConfig.FolderToSyncList)
+            {
+                MessageBox.Show($"Path: {folderToSync.FolderPath}, Remote: {folderToSync.RemoteName}");
+            }
         }
     }
 }

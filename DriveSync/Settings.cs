@@ -11,14 +11,14 @@ using System.Windows.Forms;
 using DriveSync.Models;
 using DriveSync.Utils;
 using Mapster;
-using static System.Int32;
 
 namespace DriveSync
 {
     public partial class Settings : Form
     {
         private Action? ShowSyncFolderTextAction { get; set; }
-        //private HashSet<string>
+        public List<string> _remoteNames { get; set; } = new();
+        private List<TextBoxCombobox> _textBoxComboboxes = new();
 
         public Settings(Action? showSyncFolderTextAction = null)
         {
@@ -30,9 +30,16 @@ namespace DriveSync
         {
             if (Data.AppConfig == null) return;
 
-            //SelectFolderTxt.Text = Data.AppConfig.FolderToSync;
             RCloneConfigTxt.Text = Data.AppConfig.RCloneExePath;
             RepeatSyncTxt.Text = Data.AppConfig.RepeatSync.ToString();
+            _remoteNames = Data.AppConfig.RemoteNames;
+
+            if (Data.AppConfig.FolderToSyncList == null) return;
+
+            foreach (var folderToSync in Data.AppConfig.FolderToSyncList)
+            {
+                LoadInputs(folderToSync.FolderPath, folderToSync.RemoteName);
+            }
         }
 
         private void Settings_FormClosed(object sender, FormClosedEventArgs e)
@@ -50,12 +57,24 @@ namespace DriveSync
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            /*
+            var remoteNameSet = new HashSet<string>();
+            var folderSyncList = _textBoxComboboxes.Select(x =>
+            {
+                remoteNameSet.Add(x.ComboBox.Text);
+
+                return new FolderToSync
+                {
+                    FolderPath = x.TextBox.Text,
+                    RemoteName = x.ComboBox.Text
+                };
+            }).ToList();
+
             var isSaved = ConfigUtil.Save(new AppConfig
             {
-                //FolderToSync = SelectFolderTxt.Text,
+                FolderToSyncList = folderSyncList,
                 RCloneExePath = RCloneConfigTxt.Text,
                 RepeatSync = Convert.ToInt32(RepeatSyncTxt.Text),
+                RemoteNames = remoteNameSet.ToList()
             });
 
             if (!isSaved) return;
@@ -64,7 +83,6 @@ namespace DriveSync
             
             ShowSyncFolderTextAction?.Invoke();
             Hide();
-            */
         }
 
         private void RepeatSyncTxt_TextChanged(object sender, EventArgs e)
@@ -74,6 +92,11 @@ namespace DriveSync
         }
 
         private void AddMoreButton_Click(object sender, EventArgs e)
+        {
+            LoadInputs();
+        }
+
+        private void LoadInputs(string? selectedFolderPath = null, string? selectedRemoteName = null)
         {
             FlowLayoutPanel flowPanel = new()
             {
@@ -85,8 +108,9 @@ namespace DriveSync
 
             Label label = new()
             {
-                Text = "Sync Folder"
+                Text = "Sync Folder",
             };
+            label.Top += 10;
 
             TextBox textBox = new()
             {
@@ -96,6 +120,8 @@ namespace DriveSync
                 ReadOnly = RCloneConfigTxt.ReadOnly,
                 Margin = RCloneConfigTxt.Margin
             };
+
+            textBox.Text = selectedFolderPath;
 
             Button button = new()
             {
@@ -115,14 +141,26 @@ namespace DriveSync
             {
                 Font = TestCmbx.Font,
                 Margin = TestCmbx.Margin,
-                Size = TestCmbx.Size
+                Size = TestCmbx.Size,
             };
+
+            foreach (var remoteName in _remoteNames)
+            {
+                combobox.Items.Add(remoteName);
+            }
+
+            combobox.Text = selectedRemoteName;
 
             flowPanel.Controls.Add(label);
             flowPanel.Controls.Add(textBox);
             flowPanel.Controls.Add(button);
             flowPanel.Controls.Add(combobox);
 
+            _textBoxComboboxes.Add(new TextBoxCombobox()
+            {
+                TextBox = textBox,
+                ComboBox = combobox
+            });
             FlowLayoutPanel.Controls.Add(flowPanel);
         }
 
@@ -151,5 +189,11 @@ namespace DriveSync
             };
         }
         */
+    }
+
+    public class TextBoxCombobox
+    {
+        public TextBox TextBox { get; set; }
+        public ComboBox ComboBox { get; set; }
     }
 }

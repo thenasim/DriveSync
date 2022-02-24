@@ -8,10 +8,10 @@ namespace DriveSync.Models
 {
     public class AppConfig
     {
-        public FolderToSync[]? FolderToSync { get; set; } = null;
+        public List<FolderToSync>? FolderToSyncList { get; set; } = null;
         public string RCloneExePath { get; set; } = string.Empty;
         public int? RepeatSync { get; set; } = null; // save in the config by milliseconds
-        public string[]? RemoteNames { get; set; } = null;
+        public List<string> RemoteNames { get; set; } = new();
     }
 
     public record FolderToSync

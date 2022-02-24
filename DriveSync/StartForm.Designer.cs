@@ -30,16 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StartForm));
             this.SettingsButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.SyncFolderLabel = new System.Windows.Forms.Label();
             this.SyncButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.RepeatTimeLabel = new System.Windows.Forms.Label();
+            this.RepeatSyncLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.NextSyncLabel = new System.Windows.Forms.Label();
             this.LastSyncedLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.CurrentlySyncingLabel = new System.Windows.Forms.Label();
+            this.CurrentRemoteLabel = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,25 +56,6 @@
             this.SettingsButton.TabIndex = 0;
             this.SettingsButton.UseVisualStyleBackColor = false;
             this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 52);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Sync Folder";
-            // 
-            // SyncFolderLabel
-            // 
-            this.SyncFolderLabel.AutoSize = true;
-            this.SyncFolderLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SyncFolderLabel.Location = new System.Drawing.Point(126, 46);
-            this.SyncFolderLabel.Name = "SyncFolderLabel";
-            this.SyncFolderLabel.Size = new System.Drawing.Size(139, 28);
-            this.SyncFolderLabel.TabIndex = 2;
-            this.SyncFolderLabel.Text = "Not specified";
             // 
             // SyncButton
             // 
@@ -100,26 +83,26 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 93);
+            this.label2.Location = new System.Drawing.Point(12, 27);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 20);
+            this.label2.Size = new System.Drawing.Size(90, 20);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Repeat Time";
+            this.label2.Text = "Repeat Sync";
             // 
-            // RepeatTimeLabel
+            // RepeatSyncLabel
             // 
-            this.RepeatTimeLabel.AutoSize = true;
-            this.RepeatTimeLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RepeatTimeLabel.Location = new System.Drawing.Point(126, 87);
-            this.RepeatTimeLabel.Name = "RepeatTimeLabel";
-            this.RepeatTimeLabel.Size = new System.Drawing.Size(139, 28);
-            this.RepeatTimeLabel.TabIndex = 7;
-            this.RepeatTimeLabel.Text = "Not specified";
+            this.RepeatSyncLabel.AutoSize = true;
+            this.RepeatSyncLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RepeatSyncLabel.Location = new System.Drawing.Point(147, 23);
+            this.RepeatSyncLabel.Name = "RepeatSyncLabel";
+            this.RepeatSyncLabel.Size = new System.Drawing.Size(139, 28);
+            this.RepeatSyncLabel.TabIndex = 7;
+            this.RepeatSyncLabel.Text = "Not specified";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 134);
+            this.label3.Location = new System.Drawing.Point(12, 66);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 20);
             this.label3.TabIndex = 8;
@@ -128,7 +111,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 175);
+            this.label4.Location = new System.Drawing.Point(12, 105);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 20);
             this.label4.TabIndex = 9;
@@ -138,7 +121,7 @@
             // 
             this.NextSyncLabel.AutoSize = true;
             this.NextSyncLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.NextSyncLabel.Location = new System.Drawing.Point(126, 130);
+            this.NextSyncLabel.Location = new System.Drawing.Point(147, 61);
             this.NextSyncLabel.Name = "NextSyncLabel";
             this.NextSyncLabel.Size = new System.Drawing.Size(139, 28);
             this.NextSyncLabel.TabIndex = 10;
@@ -148,26 +131,66 @@
             // 
             this.LastSyncedLabel.AutoSize = true;
             this.LastSyncedLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.LastSyncedLabel.Location = new System.Drawing.Point(126, 173);
+            this.LastSyncedLabel.Location = new System.Drawing.Point(147, 99);
             this.LastSyncedLabel.Name = "LastSyncedLabel";
             this.LastSyncedLabel.Size = new System.Drawing.Size(139, 28);
             this.LastSyncedLabel.TabIndex = 11;
             this.LastSyncedLabel.Text = "Not specified";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 144);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(123, 20);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Currently Syncing";
+            // 
+            // CurrentlySyncingLabel
+            // 
+            this.CurrentlySyncingLabel.AutoSize = true;
+            this.CurrentlySyncingLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CurrentlySyncingLabel.Location = new System.Drawing.Point(147, 137);
+            this.CurrentlySyncingLabel.Name = "CurrentlySyncingLabel";
+            this.CurrentlySyncingLabel.Size = new System.Drawing.Size(139, 28);
+            this.CurrentlySyncingLabel.TabIndex = 13;
+            this.CurrentlySyncingLabel.Text = "Not specified";
+            // 
+            // CurrentRemoteLabel
+            // 
+            this.CurrentRemoteLabel.AutoSize = true;
+            this.CurrentRemoteLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CurrentRemoteLabel.Location = new System.Drawing.Point(147, 175);
+            this.CurrentRemoteLabel.Name = "CurrentRemoteLabel";
+            this.CurrentRemoteLabel.Size = new System.Drawing.Size(139, 28);
+            this.CurrentRemoteLabel.TabIndex = 15;
+            this.CurrentRemoteLabel.Text = "Not specified";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 182);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(113, 20);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Current Remote";
             // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(811, 515);
+            this.Controls.Add(this.CurrentRemoteLabel);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.CurrentlySyncingLabel);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.LastSyncedLabel);
             this.Controls.Add(this.NextSyncLabel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.RepeatTimeLabel);
+            this.Controls.Add(this.RepeatSyncLabel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.SyncFolderLabel);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.SettingsButton);
             this.MaximizeBox = false;
             this.Name = "StartForm";
@@ -182,15 +205,17 @@
         #endregion
 
         private Button SettingsButton;
-        private Label label1;
-        private Label SyncFolderLabel;
         private Button SyncButton;
         private Panel panel1;
         private Label label2;
-        private Label RepeatTimeLabel;
+        private Label RepeatSyncLabel;
         private Label label3;
         private Label label4;
         private Label NextSyncLabel;
         private Label LastSyncedLabel;
+        private Label label1;
+        private Label CurrentlySyncingLabel;
+        private Label CurrentRemoteLabel;
+        private Label label6;
     }
 }

@@ -56,7 +56,7 @@
             // 
             // SelectRCloneButton
             // 
-            this.SelectRCloneButton.Location = new System.Drawing.Point(696, 62);
+            this.SelectRCloneButton.Location = new System.Drawing.Point(696, 81);
             this.SelectRCloneButton.Name = "SelectRCloneButton";
             this.SelectRCloneButton.Size = new System.Drawing.Size(94, 48);
             this.SelectRCloneButton.TabIndex = 6;
@@ -67,9 +67,10 @@
             // RCloneConfigTxt
             // 
             this.RCloneConfigTxt.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RCloneConfigTxt.Location = new System.Drawing.Point(121, 64);
+            this.RCloneConfigTxt.Location = new System.Drawing.Point(121, 84);
             this.RCloneConfigTxt.Multiline = true;
             this.RCloneConfigTxt.Name = "RCloneConfigTxt";
+            this.RCloneConfigTxt.PlaceholderText = "Select the exe file of rclone";
             this.RCloneConfigTxt.ReadOnly = true;
             this.RCloneConfigTxt.Size = new System.Drawing.Size(569, 43);
             this.RCloneConfigTxt.TabIndex = 1;
@@ -78,7 +79,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 74);
+            this.label3.Location = new System.Drawing.Point(15, 95);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 20);
             this.label3.TabIndex = 4;
@@ -90,7 +91,7 @@
             this.SaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.SaveButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.SaveButton.Location = new System.Drawing.Point(87, 752);
+            this.SaveButton.Location = new System.Drawing.Point(814, 687);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(291, 52);
             this.SaveButton.TabIndex = 7;
@@ -101,7 +102,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 697);
+            this.label4.Location = new System.Drawing.Point(15, 153);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(90, 20);
             this.label4.TabIndex = 8;
@@ -110,11 +111,11 @@
             // RepeatSyncTxt
             // 
             this.RepeatSyncTxt.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RepeatSyncTxt.Location = new System.Drawing.Point(127, 687);
+            this.RepeatSyncTxt.Location = new System.Drawing.Point(121, 143);
             this.RepeatSyncTxt.Multiline = true;
             this.RepeatSyncTxt.Name = "RepeatSyncTxt";
             this.RepeatSyncTxt.PlaceholderText = "Enter time in milliseconds";
-            this.RepeatSyncTxt.Size = new System.Drawing.Size(537, 43);
+            this.RepeatSyncTxt.Size = new System.Drawing.Size(569, 43);
             this.RepeatSyncTxt.TabIndex = 2;
             this.RepeatSyncTxt.TextChanged += new System.EventHandler(this.RepeatSyncTxt_TextChanged);
             // 
@@ -125,7 +126,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(670, 697);
+            this.label5.Location = new System.Drawing.Point(696, 153);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(107, 20);
             this.label5.TabIndex = 9;
@@ -138,23 +139,26 @@
             this.TestCmbx.Items.AddRange(new object[] {
             "Hello",
             "World"});
-            this.TestCmbx.Location = new System.Drawing.Point(747, 570);
+            this.TestCmbx.Location = new System.Drawing.Point(121, 12);
             this.TestCmbx.Name = "TestCmbx";
-            this.TestCmbx.Size = new System.Drawing.Size(229, 45);
+            this.TestCmbx.Size = new System.Drawing.Size(250, 45);
             this.TestCmbx.TabIndex = 10;
+            this.TestCmbx.Visible = false;
             // 
             // FlowLayoutPanel
             // 
+            this.FlowLayoutPanel.AutoScroll = true;
             this.FlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.FlowLayoutPanel.Location = new System.Drawing.Point(12, 113);
+            this.FlowLayoutPanel.Location = new System.Drawing.Point(9, 202);
             this.FlowLayoutPanel.Name = "FlowLayoutPanel";
-            this.FlowLayoutPanel.Size = new System.Drawing.Size(1091, 328);
+            this.FlowLayoutPanel.Size = new System.Drawing.Size(1096, 479);
             this.FlowLayoutPanel.TabIndex = 11;
             // 
             // AddMoreButton
             // 
+            this.AddMoreButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddMoreButton.Image = ((System.Drawing.Image)(resources.GetObject("AddMoreButton.Image")));
-            this.AddMoreButton.Location = new System.Drawing.Point(1041, 62);
+            this.AddMoreButton.Location = new System.Drawing.Point(1043, 148);
             this.AddMoreButton.Name = "AddMoreButton";
             this.AddMoreButton.Size = new System.Drawing.Size(62, 48);
             this.AddMoreButton.TabIndex = 13;
@@ -165,12 +169,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1117, 949);
+            this.ClientSize = new System.Drawing.Size(1117, 751);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.RepeatSyncTxt);
             this.Controls.Add(this.AddMoreButton);
             this.Controls.Add(this.FlowLayoutPanel);
             this.Controls.Add(this.TestCmbx);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.RepeatSyncTxt);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.SelectRCloneButton);
