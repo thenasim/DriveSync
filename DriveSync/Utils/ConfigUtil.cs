@@ -17,7 +17,8 @@ namespace DriveSync.Utils
             {
                 JsonSerializerOptions options = new()
                 {
-                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                    WriteIndented = true
                 };
 
                 File.WriteAllText(Config.ConfigFilePath, JsonSerializer.Serialize(appConfig, options));
