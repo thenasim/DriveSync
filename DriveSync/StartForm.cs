@@ -1,21 +1,31 @@
 using DriveSync.Models;
 using DriveSync.Service;
 using DriveSync.Utils;
+using Microsoft.Win32;
 
 namespace DriveSync
 {
     public partial class StartForm : Form
     {
-        private bool _cancelSync = false;
+        private bool _cancelSync;
+        private const string DriveSyncKey = "DRIVE_SYNC__NASIM";
 
         public StartForm()
         {
             InitializeComponent();
+            //MessageBox.Show(Application.ExecutablePath);
+            var rk = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+
+            // Print out the keys.
+            //MessageBox.Show(rk.Name);
+            var Startup = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
+
+            MessageBox.Show(Startup);
         }
 
         internal void ShowSettingsInfo()
         {
-            RepeatSyncLabel.Text = Data.AppConfig?.RepeatSync.ToString() ?? "Not specified";
+            RepeatSyncLabel.Text = $"{Data.AppConfig?.RepeatSync.ToString()}ms";
         }
 
         private void SettingsButton_Click(object sender, EventArgs e)
@@ -29,6 +39,16 @@ namespace DriveSync
             ShowSettingsInfo();
         }
 
+        private void SetLastSynced()
+        {
+            LastSyncedLabel.Text = DateTime.Now.ToLongTimeString();
+        }
+
+        private void SetNextSynced(double timeDelay)
+        {
+            NextSyncLabel.Text = DateTime.Now.AddMilliseconds(timeDelay).ToLongTimeString();
+        }
+
         private async void SyncButton_Click(object sender, EventArgs e)
         {
             _cancelSync = false;
@@ -36,8 +56,9 @@ namespace DriveSync
             if (Data.AppConfig == null) return;
             if (Data.AppConfig?.FolderToSyncList == null) return;
 
+            var timeDelay = Data.AppConfig.RepeatSync ?? 5000;
             var rClone = new RClone(Data.AppConfig.RCloneExePath);
-            var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(Data.AppConfig.RepeatSync ?? 5000));
+            var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(timeDelay));
 
             do
             {
@@ -47,7 +68,7 @@ namespace DriveSync
                 // Sync Button show syncing
                 SyncButton.Text = "Syncing";
                 SyncButton.Enabled = false;
-                CancelButton.Enabled = false;
+                CancelButton.Visible = false;
 
                 foreach (var toSync in folderSyncList)
                 {
@@ -57,12 +78,15 @@ namespace DriveSync
                     var isCopied = rClone.Copy(toSync.FolderPath, toSync.RemoteName, out _);
 
                     if (isCopied == false) errorFolders.Add(toSync);
+
+                    SetLastSynced();
+                    SetNextSynced(timeDelay);
                 }
 
                 // Sync Button text reset
                 SyncButton.Text = "Sync";
                 SyncButton.Enabled = true;
-                CancelButton.Enabled = true;
+                CancelButton.Visible = true;
 
                 // Show message is notification
                 var message = (errorFolders.Count == 0 ? "Successfully synced all the folders." : "Error occurred while syncing.");
@@ -80,7 +104,8 @@ namespace DriveSync
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            _cancelSync = true;
+            _cancelSync = !_cancelSync;
+            CancelButton.Text = _cancelSync ? "Cancelled" : "Cancel";
         }
     }
 }

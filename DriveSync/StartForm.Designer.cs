@@ -32,6 +32,7 @@
             this.SettingsButton = new System.Windows.Forms.Button();
             this.SyncButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.CancelButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.RepeatSyncLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,7 +45,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.InQueueLabel = new System.Windows.Forms.Label();
-            this.CancelButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,6 +83,21 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(787, 197);
             this.panel1.TabIndex = 5;
+            // 
+            // CancelButton
+            // 
+            this.CancelButton.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.CancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CancelButton.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CancelButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.CancelButton.Location = new System.Drawing.Point(290, 126);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(230, 52);
+            this.CancelButton.TabIndex = 5;
+            this.CancelButton.Text = "Cancel";
+            this.CancelButton.UseVisualStyleBackColor = false;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // label2
             // 
@@ -197,21 +212,6 @@
             this.InQueueLabel.Size = new System.Drawing.Size(24, 28);
             this.InQueueLabel.TabIndex = 17;
             this.InQueueLabel.Text = "0";
-            // 
-            // CancelButton
-            // 
-            this.CancelButton.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.CancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CancelButton.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CancelButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.CancelButton.Location = new System.Drawing.Point(290, 126);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(230, 52);
-            this.CancelButton.TabIndex = 5;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.UseVisualStyleBackColor = false;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // StartForm
             // 
