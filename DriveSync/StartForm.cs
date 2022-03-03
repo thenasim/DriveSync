@@ -1,26 +1,29 @@
 using DriveSync.Models;
 using DriveSync.Service;
 using DriveSync.Utils;
+using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 
 namespace DriveSync
 {
     public partial class StartForm : Form
     {
+        private readonly ILogger<StartForm> _logger;
         private bool _cancelSync;
         private const string DriveSyncKey = "DRIVE_SYNC__NASIM";
 
-        public StartForm()
+        public StartForm(ILogger<StartForm> logger)
         {
+            _logger = logger;
             InitializeComponent();
             //MessageBox.Show(Application.ExecutablePath);
-            var rk = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            //var rk = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
             // Print out the keys.
             //MessageBox.Show(rk.Name);
-            var Startup = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
-
-            MessageBox.Show(Startup);
+            //var Startup = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
+            //MessageBox.Show(Startup);
+            _logger.LogInformation("App Started");
         }
 
         internal void ShowSettingsInfo()
