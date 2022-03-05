@@ -2,5 +2,5 @@
 
 public class RemoteLists
 {
-    public string[] Remotes { get; set; } = Array.Empty<string>();
+    public List<string> Remotes { get; set; } = new();
 }

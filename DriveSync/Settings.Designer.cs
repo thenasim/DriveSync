@@ -42,6 +42,7 @@
             this.TestCmbx = new System.Windows.Forms.ComboBox();
             this.FlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.AddMoreButton = new System.Windows.Forms.Button();
+            this.AddNewEmailButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -83,7 +84,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 20);
             this.label3.TabIndex = 4;
-            this.label3.Text = "RCloneService Path";
+            this.label3.Text = "RClone Path";
             // 
             // SaveButton
             // 
@@ -165,11 +166,22 @@
             this.AddMoreButton.UseVisualStyleBackColor = true;
             this.AddMoreButton.Click += new System.EventHandler(this.AddMoreButton_Click);
             // 
+            // AddNewEmailButton
+            // 
+            this.AddNewEmailButton.Location = new System.Drawing.Point(975, 15);
+            this.AddNewEmailButton.Name = "AddNewEmailButton";
+            this.AddNewEmailButton.Size = new System.Drawing.Size(130, 48);
+            this.AddNewEmailButton.TabIndex = 14;
+            this.AddNewEmailButton.Text = "Add New Email";
+            this.AddNewEmailButton.UseVisualStyleBackColor = true;
+            this.AddNewEmailButton.Click += new System.EventHandler(this.AddNewEmailButton_Click);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1117, 751);
+            this.Controls.Add(this.AddNewEmailButton);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.RepeatSyncTxt);
             this.Controls.Add(this.AddMoreButton);
@@ -206,5 +218,6 @@
         private ComboBox TestCmbx;
         private FlowLayoutPanel FlowLayoutPanel;
         private Button AddMoreButton;
+        private Button AddNewEmailButton;
     }
 }

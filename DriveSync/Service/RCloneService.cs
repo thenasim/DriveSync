@@ -45,14 +45,14 @@ namespace DriveSync.Utils
 
         internal bool Check(string sourceCommand, string destCommand, out string output)
         {
-            var exitCode = RunCommand($"check {sourceCommand} {destCommand} --one-way", out output);
+            var exitCode = RunCommand($"check {sourceCommand} {destCommand}: --one-way", out output);
 
             return exitCode == 0;
         }
 
         internal bool Copy(string sourceCommand, string destCommand, out string output)
         {
-            var exitCode = RunCommand($"copy {sourceCommand} {destCommand}", out output);
+            var exitCode = RunCommand($"copy {sourceCommand} {destCommand}:", out output);
 
             return exitCode == 0;
         }
