@@ -83,7 +83,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 20);
             this.label3.TabIndex = 4;
-            this.label3.Text = "RClone Path";
+            this.label3.Text = "RCloneService Path";
             // 
             // SaveButton
             // 

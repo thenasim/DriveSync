@@ -1,6 +1,8 @@
+using DriveSync.ApiInterfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Refit;
 using Serilog;
 
 namespace DriveSync;
@@ -33,6 +35,12 @@ internal static class Program
                 {
                     x.SetMinimumLevel(LogLevel.Information);
                     x.AddSerilog(serilogLogger, true);
+                });
+
+                // Add Refit
+                services.AddRefitClient<IConfigData>().ConfigureHttpClient(x =>
+                {
+                    x.BaseAddress = new Uri("http://localhost:5572");
                 });
             });
 

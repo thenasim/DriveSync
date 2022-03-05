@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace DriveSync.Utils
 {
-    internal class RClone
+    internal class RCloneService
     {
         private readonly string _path;
 
-        public RClone(string path)
+        public RCloneService(string path)
         {
             _path = path;
         }

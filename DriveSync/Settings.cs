@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DriveSync.Models;
 using DriveSync.Utils;
-using Mapster;
 
 namespace DriveSync
 {
