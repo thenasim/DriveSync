@@ -1,60 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using Microsoft.Extensions.Logging;
+using Microsoft.VisualBasic.Logging;
 
-namespace DriveSync.Utils
+namespace DriveSync.Service;
+
+internal class RCloneService
 {
-    internal class RCloneService
+    private readonly string _path;
+
+    public RCloneService(string path)
     {
-        private readonly string _path;
+        _path = path;
+    }
 
-        public RCloneService(string path)
-        {
-            _path = path;
-        }
+    private int RunCommand(string arguments, out string output)
+    {
+        var process = new Process();
+        process.StartInfo.RedirectStandardInput = true;
+        process.StartInfo.RedirectStandardOutput = true;
+        process.StartInfo.RedirectStandardError = true;
+        process.StartInfo.CreateNoWindow = true;
 
-        private int RunCommand(string arguments, out string output)
-        {
-            var process = new Process();
-            process.StartInfo.RedirectStandardInput = true;
-            process.StartInfo.RedirectStandardOutput = true;
-            process.StartInfo.RedirectStandardError = true;
-            process.StartInfo.CreateNoWindow = true;
+        process.StartInfo.FileName = _path;
+        process.StartInfo.Arguments = arguments;
 
-            process.StartInfo.FileName = _path;
-            process.StartInfo.Arguments = arguments;
+        process.Start();
 
-            process.Start();
+        output = process.StandardOutput.ReadToEnd();
 
-            output = process.StandardOutput.ReadToEnd();
+        process.Kill();
 
-            process.Kill();
+        return process.ExitCode;
+    }
 
-            return process.ExitCode;
-        }
+    internal bool IsValidRClone(out string output)
+    {
+        var exitCode = RunCommand("version", out output);
 
-        internal bool IsValidRClone(out string output)
-        {
-            var exitCode = RunCommand("version", out output);
+        return exitCode == 0;
+    }
 
-            return exitCode == 0;
-        }
+    internal bool Check(string sourceCommand, string destCommand, out string output)
+    {
+        var exitCode = RunCommand($"check {sourceCommand} {destCommand}: --one-way", out output);
 
-        internal bool Check(string sourceCommand, string destCommand, out string output)
-        {
-            var exitCode = RunCommand($"check {sourceCommand} {destCommand}: --one-way", out output);
+        return exitCode == 0;
+    }
 
-            return exitCode == 0;
-        }
+    internal bool CreateConfig(string jsonString, string command, out string output)
+    {
+        jsonString = jsonString.Replace("\"", "\\\"");
 
-        internal bool Copy(string sourceCommand, string destCommand, out string output)
-        {
-            var exitCode = RunCommand($"copy {sourceCommand} {destCommand}:", out output);
+        var exitCode = RunCommand($"rc --json {jsonString} {command}", out output);
 
-            return exitCode == 0;
-        }
+        return exitCode == 0;
+    }
+
+    internal bool Copy(string sourceCommand, string destCommand, out string output)
+    {
+        var exitCode = RunCommand($"copy {sourceCommand} {destCommand}:", out output);
+
+        return exitCode == 0;
     }
 }

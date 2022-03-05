@@ -10,5 +10,8 @@ public interface IConfigData
     Task<RemoteLists> GetRemotes();
 
     [Post("/config/create")]
-    Task CreateRemote([Body] CreateConfigModel model);
+    Task CreateRemote([Body(BodySerializationMethod.Serialized)] CreateConfigModel model);
+
+    [Post("/sync/copy")]
+    Task CopyToRemote([Body(BodySerializationMethod.Serialized)] CopyModel model);
 }

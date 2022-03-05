@@ -28,9 +28,6 @@ public partial class Settings : Form
 
         if (Data.AppConfig.FolderToSyncList == null) return;
 
-        foreach (var folderToSync in Data.AppConfig.FolderToSyncList)
-            LoadInputs(folderToSync.FolderPath, folderToSync.RemoteName);
-
         // Set remote names to combobox
         var configData = RestService.For<IConfigData>("http://localhost:5572");
 
@@ -38,6 +35,10 @@ public partial class Settings : Form
         {
             var remoteLists = await configData.GetRemotes();
             RemoteNames = remoteLists.Remotes;
+
+            // Set already created folderToSync in Combobox
+            foreach (var folderToSync in Data.AppConfig.FolderToSyncList)
+                LoadInputs(folderToSync.FolderPath, folderToSync.RemoteName);
         }
         catch (Exception ex)
         {

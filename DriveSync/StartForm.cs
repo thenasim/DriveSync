@@ -1,8 +1,11 @@
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using DriveSync.ApiInterfaces;
 using DriveSync.Models;
+using DriveSync.Service;
 using DriveSync.Utils;
 using Microsoft.Extensions.Logging;
+using Refit;
 
 namespace DriveSync;
 
@@ -48,6 +51,43 @@ public partial class StartForm : Form
 
     private async void SyncButton_Click(object sender, EventArgs e)
     {
+        var client = new HttpClient();
+
+        var data = new CreateConfigModel()
+        {
+            Name = "Nasim",
+            Parameter = new Parameter() { RootFolderId = "", Email = "" },
+        };
+
+        var jsonData = JsonSerializer.Serialize(data);
+
+        MessageBox.Show(jsonData.Replace("\"", "\\\""));
+
+        //await client.PostAsync("http://localhost:5572/config/create", new StringContent(jsonData));
+
+        return;
+        // Copy from source to remote destination with API
+        var configData = RestService.For<IConfigData>("http://localhost:5572");
+
+        try
+        {
+            var folderSyncList = Data.AppConfig?.FolderToSyncList;
+
+            foreach (var toSync in folderSyncList)
+            {
+                await configData.CopyToRemote(new CopyModel()
+                {
+                    Source = toSync.FolderPath,
+                    Destination = toSync.RemoteName
+                });
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+
+        return;
         _cancelSync = false;
 
         if (Data.AppConfig == null) return;
