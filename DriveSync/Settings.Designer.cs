@@ -92,7 +92,7 @@
             this.SaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.SaveButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.SaveButton.Location = new System.Drawing.Point(814, 687);
+            this.SaveButton.Location = new System.Drawing.Point(939, 687);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(291, 52);
             this.SaveButton.TabIndex = 7;
@@ -142,7 +142,7 @@
             "World"});
             this.TestCmbx.Location = new System.Drawing.Point(121, 12);
             this.TestCmbx.Name = "TestCmbx";
-            this.TestCmbx.Size = new System.Drawing.Size(250, 45);
+            this.TestCmbx.Size = new System.Drawing.Size(310, 45);
             this.TestCmbx.TabIndex = 10;
             this.TestCmbx.Visible = false;
             // 
@@ -152,14 +152,14 @@
             this.FlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.FlowLayoutPanel.Location = new System.Drawing.Point(9, 202);
             this.FlowLayoutPanel.Name = "FlowLayoutPanel";
-            this.FlowLayoutPanel.Size = new System.Drawing.Size(1096, 479);
+            this.FlowLayoutPanel.Size = new System.Drawing.Size(1221, 479);
             this.FlowLayoutPanel.TabIndex = 11;
             // 
             // AddMoreButton
             // 
             this.AddMoreButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddMoreButton.Image = ((System.Drawing.Image)(resources.GetObject("AddMoreButton.Image")));
-            this.AddMoreButton.Location = new System.Drawing.Point(1043, 148);
+            this.AddMoreButton.Location = new System.Drawing.Point(1168, 148);
             this.AddMoreButton.Name = "AddMoreButton";
             this.AddMoreButton.Size = new System.Drawing.Size(62, 48);
             this.AddMoreButton.TabIndex = 13;
@@ -168,7 +168,7 @@
             // 
             // AddNewEmailButton
             // 
-            this.AddNewEmailButton.Location = new System.Drawing.Point(975, 15);
+            this.AddNewEmailButton.Location = new System.Drawing.Point(1100, 12);
             this.AddNewEmailButton.Name = "AddNewEmailButton";
             this.AddNewEmailButton.Size = new System.Drawing.Size(130, 48);
             this.AddNewEmailButton.TabIndex = 14;
@@ -180,7 +180,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1117, 751);
+            this.ClientSize = new System.Drawing.Size(1236, 751);
             this.Controls.Add(this.AddNewEmailButton);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.RepeatSyncTxt);

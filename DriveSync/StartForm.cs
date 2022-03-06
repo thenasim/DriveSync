@@ -20,7 +20,6 @@ public partial class StartForm : Form
         _logger = logger;
         _configData = configData;
         InitializeComponent();
-        _logger.LogInformation("App Started");
     }
 
     internal void ShowSettingsInfo()
@@ -153,20 +152,7 @@ public partial class StartForm : Form
             backgroundWorker1.CancelAsync();
         }
 
-        return;
-        try
-        {
-            var data = await _configData.GetRemotes();
-
-            MessageBox.Show(JsonSerializer.Serialize(data.Remotes));
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show(ex.Message);
-        }
-
-        return;
-        _cancelSync = !_cancelSync;
+        _cancelSync = true;
         CancelButton.Text = _cancelSync ? "Cancelled" : "Cancel";
     }
 
@@ -189,23 +175,39 @@ public partial class StartForm : Form
             SyncButton.Enabled = false;
             CancelButton.Visible = false;
 
+            int queueCount = folderSyncList.Count;
+
             foreach (var toSync in folderSyncList)
             {
+                InQueueLabel.Text = queueCount.ToString();
+
                 CurrentlySyncingLabel.Text = toSync.FolderPath;
                 CurrentRemoteLabel.Text = toSync.RemoteName;
 
                 var isCopied = rClone.Copy(toSync.FolderPath, toSync.RemoteName, out _);
 
-                if (isCopied == false) errorFolders.Add(toSync);
+                if (isCopied == false)
+                {
+                    errorFolders.Add(toSync);
+                    _logger.LogError($"Failed to sync {toSync.FolderPath} in {toSync.RemoteName}");
+                }
+                else
+                {
+                    _logger.LogInformation($"Successfully synced {toSync.FolderPath} in {toSync.RemoteName}");
+                }
 
                 SetLastSynced();
                 SetNextSynced(timeDelay);
+                queueCount--;
             }
 
             // Sync Button text reset
             SyncButton.Text = "Sync";
             SyncButton.Enabled = true;
             CancelButton.Visible = true;
+
+            // Queue label
+            InQueueLabel.Text = "0";
 
             // Show message is notification
             var message = errorFolders.Count == 0

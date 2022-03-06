@@ -9,6 +9,7 @@ namespace DriveSync;
 public partial class Settings : Form
 {
     private readonly List<TextBoxCombobox> _textBoxComboboxes = new();
+    private AppConfig _appConfig = new();
 
     public Settings(Action? showSyncFolderTextAction = null)
     {
@@ -56,33 +57,44 @@ public partial class Settings : Form
         if (openFileDialog.ShowDialog() == DialogResult.OK) RCloneConfigTxt.Text = openFileDialog.FileName;
     }
 
-    private void SaveButton_Click(object sender, EventArgs e)
+    private void SetAppConfig(string removeTextBox = "")
     {
-        var remoteNameSet = new HashSet<string>();
-        var folderSyncList = _textBoxComboboxes.Select(x =>
-        {
-            remoteNameSet.Add(x.ComboBox.Text);
+        var folderSyncList = new List<FolderToSync>();
 
-            return new FolderToSync
+        foreach (var x in _textBoxComboboxes.Where(x => removeTextBox != x.TextBox.Text))
+        {
+            folderSyncList.Add(new FolderToSync
             {
                 FolderPath = x.TextBox.Text,
                 RemoteName = x.ComboBox.Text
-            };
-        }).ToList();
+            });
+        }
 
-        var isSaved = ConfigUtil.Save(new AppConfig
+        _appConfig = new AppConfig
         {
             FolderToSyncList = folderSyncList,
             RCloneExePath = RCloneConfigTxt.Text,
             RepeatSync = Convert.ToInt32(RepeatSyncTxt.Text),
-            RemoteNames = remoteNameSet.ToList()
-        });
+        };
+    }
 
-        if (!isSaved) return;
+    private bool SaveConfig(string removeTextBox = "")
+    {
+        SetAppConfig(removeTextBox);
+
+        var isSaved = ConfigUtil.Save(_appConfig);
+
+        if (!isSaved) return false;
 
         Data.AppConfig = ConfigUtil.Load();
-
         ShowSyncFolderTextAction?.Invoke();
+
+        return true;
+    }
+
+    private void SaveButton_Click(object sender, EventArgs e)
+    {
+        SaveConfig();
         Hide();
     }
 
@@ -99,7 +111,7 @@ public partial class Settings : Form
     {
         FlowLayoutPanel flowPanel = new()
         {
-            Width = 1080,
+            Width = 1210,
             Height = 52
         };
 
@@ -145,10 +157,23 @@ public partial class Settings : Form
 
         combobox.Text = selectedRemoteName;
 
+        var deleteButton = new Button()
+        {
+            Size = SelectRCloneButton.Size,
+            Text = "Delete"
+        };
+
+        deleteButton.Click += (_, _) =>
+        {
+            SaveConfig(textBox.Text);
+            flowPanel.Visible = false;
+        };
+
         flowPanel.Controls.Add(label);
         flowPanel.Controls.Add(textBox);
         flowPanel.Controls.Add(button);
         flowPanel.Controls.Add(combobox);
+        flowPanel.Controls.Add(deleteButton);
 
         _textBoxComboboxes.Add(new TextBoxCombobox
         {
