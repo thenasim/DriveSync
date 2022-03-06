@@ -34,6 +34,7 @@
             this.RootFolderIdTxt = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.SaveButton = new System.Windows.Forms.Button();
+            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
             // EmailAddressTxt
@@ -91,19 +92,28 @@
             this.SaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveButton.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.SaveButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.SaveButton.Location = new System.Drawing.Point(926, 93);
+            this.SaveButton.Location = new System.Drawing.Point(747, 159);
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(230, 109);
+            this.SaveButton.Size = new System.Drawing.Size(154, 43);
             this.SaveButton.TabIndex = 14;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = false;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
+            // flowLayoutPanel
+            // 
+            this.flowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel.Location = new System.Drawing.Point(12, 223);
+            this.flowLayoutPanel.Name = "flowLayoutPanel";
+            this.flowLayoutPanel.Size = new System.Drawing.Size(889, 436);
+            this.flowLayoutPanel.TabIndex = 15;
+            // 
             // AddNewEmail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1168, 677);
+            this.ClientSize = new System.Drawing.Size(913, 671);
+            this.Controls.Add(this.flowLayoutPanel);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.RootFolderIdTxt);
             this.Controls.Add(this.label2);
@@ -112,6 +122,7 @@
             this.Controls.Add(this.label4);
             this.Name = "AddNewEmail";
             this.Text = "AddNewEmail";
+            this.Load += new System.EventHandler(this.AddNewEmail_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -125,5 +136,6 @@
         private TextBox RootFolderIdTxt;
         private Label label2;
         private Button SaveButton;
+        private FlowLayoutPanel flowLayoutPanel;
     }
 }

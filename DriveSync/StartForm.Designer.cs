@@ -45,6 +45,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.InQueueLabel = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -213,6 +214,10 @@
             this.InQueueLabel.TabIndex = 17;
             this.InQueueLabel.Text = "0";
             // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -260,5 +265,6 @@
         private Label label5;
         private Label InQueueLabel;
         private Button CancelButton;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

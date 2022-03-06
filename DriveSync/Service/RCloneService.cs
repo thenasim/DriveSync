@@ -56,6 +56,13 @@ internal class RCloneService
         return exitCode == 0;
     }
 
+    internal bool DeleteConfig(string remoteName, out string output)
+    {
+        var exitCode = RunCommand($"config delete {remoteName}", out output);
+
+        return exitCode == 0;
+    }
+
     internal bool Copy(string sourceCommand, string destCommand, out string output)
     {
         var exitCode = RunCommand($"copy {sourceCommand} {destCommand}:", out output);
